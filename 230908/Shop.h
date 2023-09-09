@@ -1,5 +1,8 @@
 #pragma once
-class Shop
+
+#include "Space.h"
+
+class CShop : public CSpace
 {
 };
 

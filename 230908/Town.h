@@ -2,16 +2,19 @@
 
 #include "Space.h"
 
-class CInn : public CSpace
+class CTown : public CSpace
 {
 public:
-	CInn();
-	~CInn() override;
+	CTown();
+	~CTown() override;
 
 public:
 	void Initialize() override;
 	void Update() override;
 	void Release() override;
 	void Render() const override;
+	
+private:
+	CSpace* m_pSpace;
 };
 

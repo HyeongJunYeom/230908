@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "String.h"
+#include "Define.h"
 
 String::String()
 	: m_iLen(0), m_pString(nullptr)
@@ -112,7 +113,8 @@ String& String::operator=(const char* _pString)
 
 	if (_pString)
 	{
-		m_iLen = strlen(m_pString);
+
+		m_iLen = strlen(_pString);
 		m_pString = new char[m_iLen + 1];
 		strcpy_s(m_pString, m_iLen + 1, _pString);
 

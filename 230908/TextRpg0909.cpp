@@ -2,11 +2,31 @@
 //
 
 #include "pch.h"
-#include <iostream>
+#include "MainGame.h"
+#include "Define.h"
 
-int main()
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
+
+#ifdef _DEBUG
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#else
+#define DBG_NEW new
+#endif
+
+void main(void)
 {
-    std::cout << "Hello World!\n";
+	CMainGame* pGame = new CMainGame;
+
+	pGame->Initialize();
+	pGame->Update();
+	pGame->Release();
+
+	delete pGame;
+	pGame = nullptr;
+
+	_CrtDumpMemoryLeaks();
+	return;
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
