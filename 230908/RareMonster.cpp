@@ -8,5 +8,5 @@ void CRareMonster::Initiallize()
 	Set_MaxHp(30);
 	Set_Hp(Get_MaxHp());
 	Set_Gold(20);
-	Set_Exp(10);
+	Set_Exp(20);
 }

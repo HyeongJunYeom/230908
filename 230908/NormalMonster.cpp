@@ -8,5 +8,5 @@ void CNormalMonster::Initiallize()
 	Set_MaxHp(20);
 	Set_Hp(Get_MaxHp());
 	Set_Gold(10);
-	Set_Exp(5);
+	Set_Exp(10);
 }

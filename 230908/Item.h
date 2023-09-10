@@ -4,11 +4,6 @@
 
 class CItem : public CObj
 {
-	enum TYPE
-	{
-		WEAPON = 1, ARMOR
-	};
-
 public:
 	CItem(int _iType);
 	~CItem() override;

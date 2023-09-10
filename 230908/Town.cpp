@@ -54,12 +54,14 @@ void CTown::Update()
 			continue;
 
 		case 5:
-			cout << "메인화면으로 돌아갑니다." << endl << endl;
+			if (Save_Game())
+			{
+				Release();
 
-			Release();
-			system("pause");
-
-			return;
+				return;
+			}
+			else
+				continue;
 
 		default:
 			cout << "보기에 없는 입력입니다. 다시 입력하세요. " << endl << endl;
@@ -91,4 +93,52 @@ void CTown::Render() const
 	cout << "3. 여관에 방문한다." << endl;
 	cout << "4. 플레이어 상태 출력" << endl;
 	cout << "5. 메인메뉴로 돌아간다." << endl;
+}
+
+bool CTown::Save_Game() const
+{
+	FILE* fSave = nullptr;
+	errno_t err =fopen_s(&fSave, "../data/save.dat", "wb");
+
+	if (0 == err)
+	{
+		cout << "파일 개방 성공!" << endl << endl;
+
+
+		int iLen = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Name().Get_Len();
+		char* pString = new char[iLen + 1];
+		strcpy_s(pString, iLen + 1,dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Name().Get_String());
+		fwrite(&(iLen), sizeof(int), 1, fSave);
+		fwrite(pString, sizeof(char), strlen(pString) + 1, fSave);
+		delete[] pString;
+
+		iLen = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_JobString().Get_Len();
+		pString = new char[iLen + 1];
+		strcpy_s(pString, iLen + 1, dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_JobString().Get_String());
+		fwrite(&(iLen), sizeof(int), 1, fSave);
+		fwrite(pString, sizeof(char), strlen(pString) + 1, fSave);
+		delete[] pString;
+
+		dynamic_cast<CPlayer*>(m_pCopyPlayer)->Set_SaveData();
+
+		fwrite(dynamic_cast<CPlayer*>(m_pCopyPlayer), sizeof(CPlayer), 1, fSave);
+
+		cout << "저장완료!" << endl << endl;
+
+		cout << "메인 화면으로 돌아갑니다." << endl << endl;
+
+		fclose(fSave);
+		system("pause");
+		return true;
+	}
+	else
+	{
+		cout << "파일 개방 실패!" << endl << endl;
+
+		cout << "마을로 돌아갑니다." << endl << endl;
+
+		fclose(fSave);
+		system("pause");
+		return false;
+	}
 }

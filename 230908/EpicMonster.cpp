@@ -8,5 +8,5 @@ void CEpicMonster::Initiallize()
 	Set_MaxHp(50);
 	Set_Hp(Get_MaxHp());
 	Set_Gold(30);
-	Set_Exp(15);
+	Set_Exp(30);
 }

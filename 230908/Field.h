@@ -4,6 +4,7 @@
 #include "NormalMonster.h"
 #include "RareMonster.h"
 #include "EpicMonster.h"
+#include "LegendMonster.h"
 #include "Fight.h"
 
 class CField : public CSpace

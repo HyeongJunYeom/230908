@@ -139,6 +139,18 @@ void CPlayer::Set_MinGold(int _iMin)
 		Set_Gold(Get_Gold() - _iMin);
 }
 
+void CPlayer::Set_LoadData(String _Name, String _JobString)
+{
+	Set_Name(_Name);
+	Set_JobString(_JobString);
+}
+
+void CPlayer::Set_SaveData()
+{
+	Set_Name(nullptr);
+	Set_JobString(nullptr);
+}
+
 void CPlayer::Level_Up()
 {
 	int iMaxHp;

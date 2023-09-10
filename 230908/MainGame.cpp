@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "MainGame.h"
 #include "Town.h"
+#include "String.h"
 
 
 CMainGame::CMainGame()
@@ -41,9 +42,14 @@ void CMainGame::Update()
 			break;
 
 		case 2:
-
-			break;
-
+			if (Load_Game())
+			{
+				break;
+			}
+			else
+			{
+				continue;
+			}
 		case 3:
 			cout << "프로그램을 종료합니다." << endl << endl;
 			Release();
@@ -61,8 +67,6 @@ void CMainGame::Update()
 		m_pTown->Initialize();
 		m_pTown->Set_Player(m_pPlayer);
 		m_pTown->Update();
-		
-		Safe_Delete(m_pTown);
 	}
 }
 
@@ -101,4 +105,55 @@ void CMainGame::Render()
 	cout << "1. 새 게임" << endl;
 	cout << "2. 불러오기" << endl;
 	cout << "3. 게임 종료" << endl;
+}
+
+bool CMainGame::Load_Game()
+{
+	FILE* fLoad = nullptr;
+	errno_t err = fopen_s(&fLoad, "../data/save.dat", "rb");
+
+	if (0 == err)
+	{
+		cout << "파일 개방 성공!" << endl << endl;
+		
+		delete m_pPlayer;
+		m_pPlayer = nullptr;
+
+		CPlayer* LoadPlayer = new CPlayer;
+
+		int iLen = 0;
+		char szBuf[100] = "";
+
+		fread(&iLen, sizeof(int), 1, fLoad);
+		fread(szBuf, sizeof(char), iLen + 1, fLoad);
+
+		String Name(szBuf);
+
+		fread(&iLen, sizeof(int), 1, fLoad);
+		fread(szBuf, sizeof(char), iLen + 1, fLoad);
+
+		String JobString(szBuf);
+
+		fread(LoadPlayer, sizeof(CPlayer), 1, fLoad);
+		LoadPlayer->Set_LoadData(Name, JobString);
+
+		m_pPlayer = LoadPlayer;
+
+		cout << "불러오기 완료!" << endl << endl;
+
+		cout << "마을에 진입합니다." << endl << endl;
+		fclose(fLoad);
+		system("pause");
+		return true;
+	}
+	else
+	{
+		cout << "파일 개방 실패!" << endl << endl;
+
+		cout << "메인메뉴로 돌아갑니다." << endl << endl;
+
+		fclose(fLoad);
+		system("pause");
+		return false;
+	}
 }

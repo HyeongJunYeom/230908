@@ -3,13 +3,23 @@
 #define PURE	=0
 
 #define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
 #include <crtdbg.h>
 
 #ifdef _DEBUG
-#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-#else
-#define DBG_NEW new
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
 #endif
+
+enum IT_WEAPON
+{
+	NORMAL_WEAPON = 1, MAGIC_WEAPON, RARE_WEAPON, EPIC_WEAPON, WEAPON_END
+};
+
+enum IT_ARMOR
+{
+	NORMAL_ARMOR = 1, MAGIC_AMROR, RARE_ARMOR, EPIC_ARMOR, ARMOR_END
+};
+
 
 template<typename T>
 void		Safe_Delete(T& p)

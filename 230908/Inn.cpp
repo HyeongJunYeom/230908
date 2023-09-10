@@ -40,8 +40,10 @@ void CInn::Update()
 			}
 			else
 			{
-				cout << "휴식을 취합니다...." << endl << endl;
+				cout << "50골드를 지불하였습니다..." << endl << endl;
 				dynamic_cast<CPlayer*>(m_pCopyPlayer)->Set_MinGold(50);
+
+				cout << "휴식을 취합니다...." << endl << endl;
 
 				cout << "체력을 50 회복했습니다." << endl << endl;
 				dynamic_cast<CPlayer*>(m_pCopyPlayer)->Set_AddHp(50);

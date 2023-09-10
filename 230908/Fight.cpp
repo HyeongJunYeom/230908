@@ -44,7 +44,6 @@ void CFight::Update()
 		case 1:
 			cout << "플레이어 " << m_pCopyPlayer->Get_Name() 
 				<< "의 공격!" << endl;
-			system("pause");
 
 			dynamic_cast<CPlayer*>(m_pCopyPlayer)->Attack((*dynamic_cast<CMonster*>(m_pCopyMonster)));
 
@@ -66,7 +65,6 @@ void CFight::Update()
 
 			cout << "몬스터 " << m_pCopyMonster->Get_Name()
 				<< "의 공격!" << endl;
-			system("pause");
 			
 			dynamic_cast<CMonster*>(m_pCopyMonster)->Attack((*dynamic_cast<CPlayer*>(m_pCopyPlayer)));
 

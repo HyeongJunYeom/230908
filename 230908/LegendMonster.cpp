@@ -8,5 +8,5 @@ void CLegendMonster::Initiallize()
 	Set_MaxHp(100);
 	Set_Hp(Get_MaxHp());
 	Set_Gold(50);
-	Set_Exp(25);
+	Set_Exp(50);
 }

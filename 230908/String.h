@@ -23,6 +23,9 @@ public:
 	bool		operator== (const char* _pString);
 	bool		operator== (const String& str);
 
+	int			Get_Len() const { return m_iLen; }
+	char*		Get_String() const { return m_pString; }
+
 public:
 	friend ostream&		operator<< (ostream& os, const String& ref);
 	friend istream&		operator>> (istream& is, String& ref);

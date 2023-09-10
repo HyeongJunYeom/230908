@@ -1,5 +1,5 @@
 #pragma once
-class Armor
+class CArmor
 {
 };
 

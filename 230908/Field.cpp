@@ -2,6 +2,7 @@
 #include "Field.h"
 
 CField::CField()
+	: m_pFight(nullptr), m_pMonster(nullptr)
 {
 }
 
@@ -36,22 +37,51 @@ void CField::Update()
 			break;
 
 		case 2:
+			if (2 > dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Level())
+			{
+				cout << "레벨이 부족합니다..." << endl;
+				cout << "현재 레벨: " << dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Level() << endl << endl;
+				system("pause");
+
+				continue;
+			}
 			m_pMonster = new CRareMonster;
 			dynamic_cast<CRareMonster*>(m_pMonster)->Initiallize();
 			break;
 
 		case 3:
+			if (3 > dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Level())
+			{
+				cout << "레벨이 부족합니다..." << endl;
+				cout << "현재 레벨: " << dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Level() << endl << endl;
+				system("pause");
+
+				continue;
+			}
 			m_pMonster = new CEpicMonster;
 			dynamic_cast<CEpicMonster*>(m_pMonster)->Initiallize();
 			break;
 
 		case 4:
+			if (4 > dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Level())
+			{
+				cout << "레벨이 부족합니다..." << endl;
+				cout << "현재 레벨: " << dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Level() << endl << endl;
+				system("pause");
+
+				continue;
+			}
+			m_pMonster = new CLegendMonster;
+			dynamic_cast<CLegendMonster*>(m_pMonster)->Initiallize();
+			break;
+
+		case 5:
 			m_pCopyPlayer->Render();
 			system("pause");
 
 			continue;
 
-		case 5:
+		case 6:
 			cout << "마을로 돌아갑니다..." << endl << endl;
 			Safe_Delete(m_pFight);
 			Safe_Delete(m_pMonster);
@@ -86,8 +116,9 @@ void CField::Render() const
 	cout << "===== 필드 메뉴 =====" << endl << endl;
 
 	cout << "1. 초급 던전" << endl;
-	cout << "2. 중급 던전." << endl;
-	cout << "3. 고급 던전." << endl;
-	cout << "4. 플레이어 상태 출력" << endl;
-	cout << "5. 마을로 돌아간다." << endl;
+	cout << "2. 중급 던전 (레벨 2이상)" << endl;
+	cout << "3. 고급 던전 (레벨 3이상)" << endl;
+	cout << "4. 보스 던전 (레벨 4이상)" << endl;
+	cout << "5. 플레이어 상태 출력" << endl;
+	cout << "6. 마을로 돌아간다." << endl;
 }
