@@ -21,4 +21,3 @@ public:
 private:
 	CSpace* m_pSpace;
 };
-

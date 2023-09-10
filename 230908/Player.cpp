@@ -8,6 +8,9 @@ CPlayer::~CPlayer()
 
 void CPlayer::Release()
 {
+	Safe_Delete<CInventory*>(m_pInven);
+	Safe_Delete<CObj*>(m_pArmor);
+	Safe_Delete<CObj*>(m_pWeapon);
 }
 
 void CPlayer::Render() const
@@ -67,11 +70,128 @@ void CPlayer::Initialize()
 		Set_NeedExp(40);			Set_Gold(100);
 		Set_Exp(0);
 
+		m_pInven = new CInventory();
 
 		cout << "캐릭터 생성 완료" << endl << endl;
 		system("pause");
 		return;
 	}
+}
+
+bool CPlayer::Equip_Wepon(CObj* _pWeapon)
+{
+	if (_pWeapon)
+	{
+		int iType = dynamic_cast<CItem*>(_pWeapon)->Get_Type();
+		if (iType < NORMAL_WEAPON && iType > WEAPON_END)
+		{
+			cout << "장비의 타입이 무기가 아닙니다." << endl << endl;
+			
+			return false;
+		}
+		if(m_pInven->Add_Item(m_pWeapon))
+			m_pWeapon = _pWeapon;
+
+		return true;
+	}
+	else
+	{
+		cout << "널 포인터 였습니다." << endl << endl;
+		return false;
+	}
+}
+
+bool CPlayer::Equip_Armor(CObj* _pArmor)
+{
+	if (_pArmor)
+	{
+		int iType = dynamic_cast<CItem*>(_pArmor)->Get_Type();
+		if (iType < NORMAL_ARMOR && iType > ARMOR_END)
+		{
+			cout << "장비의 타입이 갑옷이 아닙니다." << endl << endl;
+
+			return false;
+		}
+		if (m_pInven->Add_Item(m_pArmor))
+			m_pArmor = _pArmor;
+
+		return true;
+	}
+	else
+	{
+		cout << "널 포인터 였습니다." << endl << endl;
+		return false;
+	}
+}
+
+void CPlayer::Inventory()
+{
+	int iChoice(0);
+	int iIdx(0);
+	int iType(0);
+	CObj* Equipitem = nullptr;
+	vector<CObj*>::iterator iter;
+	while (true)
+	{
+		iter = m_pInven->Get_Inven().begin();
+
+		m_pInven->Render();
+
+		cout << "1. 아이템 장착" << endl;
+		cout << "2. 돌아가기" << endl;
+		cout << "선택: ";
+
+		switch (iChoice)
+		{
+		case 1:
+			cout << "아이템 번호를 입력하세요" << endl;
+			cout << "선택: ";
+			cin >> iIdx;
+
+			iter += iIdx - 1;
+
+			Equipitem = (*iter);
+
+			iType = (dynamic_cast<CItem*>(Equipitem))->Get_Type();
+
+			if (iType >= NORMAL_WEAPON && iType < WEAPON_END)
+			{
+				if (Equip_Wepon(Equipitem))
+				{
+					m_pInven->Get_Inven().erase(iter);
+
+					cout << "무기를 장착하였습니다." << endl << endl;
+					break;
+				}
+			}
+			if (iType >= NORMAL_ARMOR && iType < ARMOR_END)
+			{
+				if (Equip_Armor(Equipitem))
+				{
+					m_pInven->Get_Inven().erase(iter);
+
+					cout << "갑옷을 장착하였습니다." << endl << endl;
+					break;
+				}
+			}
+
+			cout << "아이템 장착에 실패하였습니다." << endl << endl;
+			break;
+
+		case 2:
+			cout << "돌아갑니다.." << endl << endl;
+			return;
+
+		default:
+			cout << "보기에 없는 입력입니다. 다시 입력하세요." << endl << endl;
+
+			system("pause");
+			continue;
+		}
+		system("pause");
+	}
+	
+
 }
 
 void CPlayer::Set_AddExp(int _iAdd)

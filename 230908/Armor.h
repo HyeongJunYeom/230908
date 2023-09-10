@@ -1,5 +1,15 @@
 #pragma once
-class CArmor
+
+#include "Item.h"
+
+class CArmor : public CItem
 {
+public:
+	CArmor(int _iType);
+	~CArmor();
+
+public:
+	void		Render() const override;
+	void		Initialize() override;
 };
 

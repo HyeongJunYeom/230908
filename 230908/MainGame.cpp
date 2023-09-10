@@ -116,8 +116,7 @@ bool CMainGame::Load_Game()
 	{
 		cout << "파일 개방 성공!" << endl << endl;
 		
-		delete m_pPlayer;
-		m_pPlayer = nullptr;
+		Safe_Delete(m_pPlayer);
 
 		CPlayer* LoadPlayer = new CPlayer;
 

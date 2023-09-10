@@ -37,10 +37,9 @@ void CTown::Update()
 
 			break;
 
-		//case 2:
-		//	m_pSpace = new CShop;
-
-		//	break;
+		case 2:
+			m_pSpace = new CShop;
+			break;
 
 		case 3:
 			m_pSpace = new CInn;
@@ -48,12 +47,17 @@ void CTown::Update()
 
 		case 4:
 			m_pCopyPlayer->Render();
-
 			system("pause");
 
 			continue;
 
 		case 5:
+			dynamic_cast<CPlayer*>(m_pCopyPlayer)->Inventory();
+			system("pause");
+
+			continue;
+
+		case 6:
 			if (Save_Game())
 			{
 				Release();
@@ -76,6 +80,8 @@ void CTown::Update()
 		m_pSpace->Release();
 
 		Safe_Delete(m_pSpace);
+
+		system("pause");
 	}
 }
 
@@ -92,7 +98,8 @@ void CTown::Render() const
 	cout << "2. 상점에 방문한다." << endl;
 	cout << "3. 여관에 방문한다." << endl;
 	cout << "4. 플레이어 상태 출력" << endl;
-	cout << "5. 메인메뉴로 돌아간다." << endl;
+	cout << "5. 인벤토리 출력" << endl;
+	cout << "6. 메인메뉴로 돌아간다." << endl;
 }
 
 bool CTown::Save_Game() const
@@ -103,7 +110,6 @@ bool CTown::Save_Game() const
 	if (0 == err)
 	{
 		cout << "파일 개방 성공!" << endl << endl;
-
 
 		int iLen = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Name().Get_Len();
 		char* pString = new char[iLen + 1];
