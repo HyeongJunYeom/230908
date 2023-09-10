@@ -35,6 +35,7 @@ void CShop::Update()
 	int iChoice(0);
 	vector<CObj*>::iterator iter;
 	int iCount(0);
+	int iType(0);
 
 	while (true)
 	{
@@ -55,6 +56,52 @@ void CShop::Update()
 				cout << endl;
 			}
 
+			cout << endl;
+			cout << "1. 아이템 구매" << endl;
+			cout << "2. 돌아가기" << endl;
+			cout << "선택: ";
+
+			cin >> iChoice;
+			cout << endl;
+
+			if (1 == iChoice)
+			{
+				cout << "구매하고 싶은 아이템 번호: ";
+				cin >> iChoice;
+
+				if (iChoice <= iCount && 0 < iChoice)
+				{
+					iType = dynamic_cast<CWeapon*>(vecWeapon[iChoice - 1])->Get_Type();
+					CObj* BuyItem = new CWeapon(iType);
+					dynamic_cast<CWeapon*>(BuyItem)->Initialize();
+
+					if (m_pCopyPlayer->Get_Gold() >= BuyItem->Get_Gold())
+					{
+						dynamic_cast<CPlayer*>(m_pCopyPlayer)->Set_MinGold(BuyItem->Get_Gold());
+						if (dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Add_Item(BuyItem))
+						{
+							cout << "아이템" << BuyItem->Get_Name() << "을 구매하였습니다." << endl << endl;
+							cout << "현재 소지금: " << m_pCopyPlayer->Get_Gold() << endl << endl;
+							break;
+						}
+						else
+						{
+							cout << "가방에 공간이 부족합니다." << endl;
+						}						
+					}
+					else
+					{
+						cout << "금화가 부족합니다." << endl;
+					}
+					cout << "아이템 구매에 실패하였습니다." << endl << endl;
+					Safe_Delete(BuyItem);
+				}
+				else
+				{
+					cout << "보기에 없는 선택입니다. 다시 입력하세요." << endl << endl;
+					break;
+				}
+			}
 			break;
 
 		case 2:
@@ -65,9 +112,57 @@ void CShop::Update()
 				cout << endl;
 			}
 
+			cout << endl;
+			cout << "1. 아이템 구매" << endl;
+			cout << "2. 돌아가기" << endl;
+			cout << "선택: ";
+
+			cin >> iChoice;
+
+			if (1 == iChoice)
+			{
+				cout << "구매하고 싶은 아이템 번호: ";
+				cin >> iChoice;
+
+				if (iChoice <= iCount && 0 < iChoice)
+				{
+					iType = dynamic_cast<CArmor*>(vecArmor[iChoice - 1])->Get_Type();
+					CObj* BuyItem = new CArmor(iType);
+					dynamic_cast<CArmor*>(BuyItem)->Initialize();
+
+					if (m_pCopyPlayer->Get_Gold() >= BuyItem->Get_Gold())
+					{
+						dynamic_cast<CPlayer*>(m_pCopyPlayer)->Set_MinGold(BuyItem->Get_Gold());
+						if (dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Add_Item(BuyItem))
+						{
+							cout << "아이템" << BuyItem->Get_Name() << "을 구매하였습니다." << endl << endl;
+							cout << "현재 소지금: " << m_pCopyPlayer->Get_Gold() << endl << endl;
+							break;
+						}
+						else
+						{
+							cout << "가방에 공간이 부족합니다." << endl;
+						}
+					}
+					else
+					{
+						cout << "금화가 부족합니다." << endl;
+					}
+					cout << "아이템 구매에 실패하였습니다." << endl << endl;
+				}
+				else
+				{
+					cout << "보기에 없는 선택입니다. 다시 입력하세요." << endl << endl;
+					break;
+				}
+			}
 			break;
 
 		case 3:
+
+			break;
+
+		case 4:
 			cout << "마을로 돌아갑니다." << endl << endl;
 			return;
 
@@ -117,7 +212,8 @@ void CShop::Render() const
 
 	cout << "1. 무기 상점" << endl;
 	cout << "2. 방어구 상점" << endl;
-	cout << "3. 마을로 돌아간다." << endl;
+	cout << "3. 아이템 판매" << endl;
+	cout << "4. 마을로 돌아간다." << endl;
 }
 
 

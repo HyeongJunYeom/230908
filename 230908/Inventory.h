@@ -19,7 +19,7 @@ public:
 	void		Delete_Item();
 
 public:
-	vector<CObj*>		Get_Inven() { return vecInven; }
+	vector<CObj*>&		Get_Inven() { return vecInven; }
 
 private:
 	vector<CObj*>		vecInven;

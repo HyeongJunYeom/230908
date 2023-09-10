@@ -27,6 +27,10 @@ public:
 	void		Set_AddHp(int _iAdd);
 	void		Set_AddGold(int _iAdd);
 	void		Set_MinGold(int _iMin);
+	void		Set_AddAtt(int _iAdd);
+	void		Set_MinAtt(int _iMin); 
+	void		Set_AddMaxHp(int _iAdd);
+	void		Set_MinMaxHp(int _iMin);
 
 	void		Set_LoadData(String _Name, String _JobString);
 	void		Set_SaveData();

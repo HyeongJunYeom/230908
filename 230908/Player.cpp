@@ -23,7 +23,12 @@ void CPlayer::Render() const
 	cout << "체력: " << Get_Hp() << " / " << Get_MaxHp() << endl;
 	cout << "공격력: " << Get_Attack() << endl;
 	cout << "경험치: " << Get_Exp() << " / " << Get_NeedExp() << endl;
-	cout << "보유골드: " << Get_Gold() << " G" << endl << endl;
+	cout << "보유골드: " << Get_Gold() << " G" << endl;
+	if(m_pArmor)
+		cout << "장착 갑옷: " << m_pArmor->Get_Name() << endl;
+	if(m_pWeapon)
+		cout << "장착 무기: " << m_pWeapon->Get_Name() << endl;
+	cout << endl;
 }
 
 void CPlayer::Initialize()
@@ -67,7 +72,7 @@ void CPlayer::Initialize()
 		}
 
 		Set_Hp(Get_MaxHp());		Set_Level(1);
-		Set_NeedExp(40);			Set_Gold(100);
+		Set_NeedExp(40);			Set_Gold(1000);
 		Set_Exp(0);
 
 		m_pInven = new CInventory();
@@ -86,13 +91,34 @@ bool CPlayer::Equip_Wepon(CObj* _pWeapon)
 		if (iType < NORMAL_WEAPON && iType > WEAPON_END)
 		{
 			cout << "장비의 타입이 무기가 아닙니다." << endl << endl;
-			
+
 			return false;
 		}
-		if(m_pInven->Add_Item(m_pWeapon))
-			m_pWeapon = _pWeapon;
+		else if (m_pWeapon)
+		{
+			int iTemp;
+			m_pInven->Add_Item(m_pWeapon);
+			Set_MinAtt(iTemp = m_pWeapon->Get_Attack());
 
-		return true;
+			m_pWeapon = _pWeapon;
+			Set_AddAtt(m_pWeapon->Get_Attack());
+
+			cout << "무기 " << m_pWeapon->Get_Name() << "을 장착했습니다." << endl << endl;
+
+			cout << "공격력이" << m_pWeapon->Get_Attack() - iTemp << "증가하였습니다." << endl << endl;
+
+			return true;
+		}
+		else
+		{
+			m_pWeapon = _pWeapon;
+			Set_AddAtt(m_pWeapon->Get_Attack());
+
+			cout << "무기 " << m_pWeapon->Get_Name() << "을 장착했습니다." << endl << endl;
+
+			cout << "공격력이" << m_pWeapon->Get_Attack() << "증가하였습니다." << endl << endl;
+			return true;
+		}
 	}
 	else
 	{
@@ -112,10 +138,32 @@ bool CPlayer::Equip_Armor(CObj* _pArmor)
 
 			return false;
 		}
-		if (m_pInven->Add_Item(m_pArmor))
-			m_pArmor = _pArmor;
+		else if (m_pArmor)
+		{
+			int iTemp;
+			m_pInven->Add_Item(m_pArmor);
+			Set_MinMaxHp(iTemp = m_pArmor->Get_Hp());
 
-		return true;
+
+
+			m_pArmor = _pArmor;
+			Set_AddMaxHp(m_pArmor->Get_Hp());
+
+			cout << "방어구 " << m_pArmor->Get_Name() << "을 장착했습니다." << endl << endl;
+
+			cout << "체력이" << m_pArmor->Get_Hp() - iTemp << "증가하였습니다." << endl << endl;
+			return true;
+		}
+		else
+		{
+			m_pArmor = _pArmor;
+			Set_AddMaxHp(m_pArmor->Get_Hp());
+
+			cout << "방어구 " << m_pArmor->Get_Name() << "을 장착했습니다." << endl << endl;
+
+			cout << "체력이" << m_pArmor->Get_Hp() << "증가하였습니다." << endl << endl;
+			return true;
+		}
 	}
 	else
 	{
@@ -140,6 +188,9 @@ void CPlayer::Inventory()
 		cout << "1. 아이템 장착" << endl;
 		cout << "2. 돌아가기" << endl;
 		cout << "선택: ";
+		cin >> iChoice;
+
+		cout << endl;
 
 		switch (iChoice)
 		{
@@ -147,8 +198,8 @@ void CPlayer::Inventory()
 			cout << "아이템 번호를 입력하세요" << endl;
 			cout << "선택: ";
 			cin >> iIdx;
-
-			iter += iIdx - 1;
+			iIdx -= 1;
+			iter += iIdx;
 
 			Equipitem = (*iter);
 
@@ -158,24 +209,26 @@ void CPlayer::Inventory()
 			{
 				if (Equip_Wepon(Equipitem))
 				{
-					m_pInven->Get_Inven().erase(iter);
+					iter = m_pInven->Get_Inven().erase(iter);
 
 					cout << "무기를 장착하였습니다." << endl << endl;
 					break;
 				}
 			}
-			if (iType >= NORMAL_ARMOR && iType < ARMOR_END)
+
+			else if (iType >= NORMAL_ARMOR && iType < ARMOR_END)
 			{
 				if (Equip_Armor(Equipitem))
 				{
-					m_pInven->Get_Inven().erase(iter);
+					iter = m_pInven->Get_Inven().erase(iter);
 
 					cout << "갑옷을 장착하였습니다." << endl << endl;
 					break;
 				}
 			}
 
-			cout << "아이템 장착에 실패하였습니다." << endl << endl;
+			else
+				cout << "아이템 장착에 실패하였습니다." << endl << endl;
 			break;
 
 		case 2:
@@ -190,7 +243,7 @@ void CPlayer::Inventory()
 		}
 		system("pause");
 	}
-	
+
 
 }
 
@@ -259,6 +312,43 @@ void CPlayer::Set_MinGold(int _iMin)
 		Set_Gold(Get_Gold() - _iMin);
 }
 
+void CPlayer::Set_AddAtt(int _iAdd)
+{
+	if (0 > _iAdd)
+		return;
+	Set_Attack(Get_Attack() + _iAdd);
+}
+
+void CPlayer::Set_MinAtt(int _iMin)
+{
+	if (Get_Attack() < _iMin)
+		Set_Attack(0);
+	else
+	{
+		Set_Attack(Get_Attack() - _iMin);
+	}
+}
+
+void CPlayer::Set_AddMaxHp(int _iAdd)
+{
+	if (0 > _iAdd)
+		return;
+	else
+	{
+		Set_MaxHp(Get_MaxHp() + _iAdd);
+	}
+}
+
+void CPlayer::Set_MinMaxHp(int _iMin)
+{
+	if (_iMin > Get_MaxHp())
+		Set_MaxHp(0);
+	else
+	{
+		Set_MaxHp(Get_MaxHp() - _iMin);
+	}
+}
+
 void CPlayer::Set_LoadData(String _Name, String _JobString)
 {
 	Set_Name(_Name);
@@ -275,10 +365,10 @@ void CPlayer::Level_Up()
 {
 	int iMaxHp;
 	int iAttack;
-	
+
 	cout << "레벨업!" << endl << endl;
 
-	switch(m_iJob)
+	switch (m_iJob)
 	{
 	case WARRIOR:
 		iMaxHp = 30;		iAttack = 2;

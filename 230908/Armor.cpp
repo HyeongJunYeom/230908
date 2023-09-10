@@ -24,19 +24,19 @@ void CArmor::Initialize()
 	Set_Attack(0);	Set_Dura(100);	Set_MaxDura(100);
 	switch (m_iType)
 	{
-	case NORMAL_WEAPON:
+	case NORMAL_ARMOR:
 		Set_Gold(100);		Set_Name("³ª¹« °©¿Ê");			Set_Hp(30);
 		break;
 
-	case MAGIC_WEAPON:
+	case MAGIC_ARMOR:
 		Set_Gold(200);		Set_Name("°­Ã¶ °©¿Ê");			Set_Hp(60);
 		break;
 
-	case RARE_WEAPON:
+	case RARE_ARMOR:
 		Set_Gold(300);		Set_Name("¹Ì½º¸± °©¿Ê");		Set_Hp(90);
 		break;
 
-	case EPIC_WEAPON:
+	case EPIC_ARMOR:
 		Set_Gold(500);		Set_Name("Å¸ÀÌÅºÀÇ °©¿Ê");		Set_Hp(150);
 		break;
 	}

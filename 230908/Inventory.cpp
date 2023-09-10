@@ -6,25 +6,11 @@
 CInventory::CInventory()
 {
 	vecInven.reserve(5);
-
-	CObj* item1 = new CArmor(NORMAL_ARMOR);
-	dynamic_cast<CArmor*>(item1)->Initialize();
-	CObj* item2 = new CArmor(RARE_ARMOR);
-	dynamic_cast<CArmor*>(item2)->Initialize();
-	CObj* item3 = new CArmor(NORMAL_WEAPON);
-	dynamic_cast<CWeapon*>(item3)->Initialize();
-	CObj* item4 = new CArmor(RARE_WEAPON);
-	dynamic_cast<CWeapon*>(item4)->Initialize();
-
-	vecInven.push_back(item1);
-	vecInven.push_back(item2);
-	vecInven.push_back(item3);
-	vecInven.push_back(item4);
 }
 
 CInventory::~CInventory()
 {
-	Release();
+	Release(); 
 }
 
 void CInventory::Release()
