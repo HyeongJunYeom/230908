@@ -41,6 +41,8 @@ protected:
 	void		Select_Job();
 
 public:
+	CObj*		Get_Weapon() const {return m_pWeapon;}
+	CObj*		Get_Armor() const {return m_pArmor;}
 	int			Get_Level() const { return m_iLevel; }
 	int			Get_NeedExp() const { return m_iNeedExp; }
 	int			Get_Job() const { return m_iJob; }

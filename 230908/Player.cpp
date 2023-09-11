@@ -122,7 +122,11 @@ bool CPlayer::Equip_Wepon(CObj* _pWeapon)
 	}
 	else
 	{
-		cout << "널 포인터 였습니다." << endl << endl;
+		if (m_pWeapon)
+		{
+			if(m_pInven->Add_Item(m_pWeapon))
+				m_pWeapon = nullptr;
+		}
 		return false;
 	}
 }
@@ -167,8 +171,11 @@ bool CPlayer::Equip_Armor(CObj* _pArmor)
 	}
 	else
 	{
-		cout << "널 포인터 였습니다." << endl << endl;
-		return false;
+		if (m_pArmor)
+		{
+			if (m_pInven->Add_Item(m_pArmor))
+				m_pArmor = nullptr;
+		}
 	}
 }
 
@@ -353,6 +360,10 @@ void CPlayer::Set_LoadData(String _Name, String _JobString)
 {
 	Set_Name(_Name);
 	Set_JobString(_JobString);
+	m_pArmor = nullptr;
+	m_pWeapon = nullptr;
+	m_pInven = nullptr;
+	m_pInven = new CInventory();
 }
 
 void CPlayer::Set_SaveData()

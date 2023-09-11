@@ -12,14 +12,15 @@ public:
 	void		Release() override;
 
 	virtual void	Initialize() PURE;
+	virtual void	Render() const PURE;
 
 public:
 	int		Get_Type() const { return m_iType; }
 	int		Get_Dura() const { return m_iDura; }
 	int		Get_MaxDura() const { return m_iMaxDura; }
+	void	Set_Dura(int _iDura) { m_iDura = _iDura; }
 
 protected:
-	void	Set_Dura(int _iDura) { m_iDura = _iDura; }
 	void	Set_MaxDura(int _iMaxDura) { m_iMaxDura = _iMaxDura; }
 
 protected:

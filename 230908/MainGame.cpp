@@ -2,6 +2,8 @@
 #include "MainGame.h"
 #include "Town.h"
 #include "String.h"
+#include "Weapon.h"
+#include "Armor.h"
 
 
 CMainGame::CMainGame()
@@ -135,6 +137,61 @@ bool CMainGame::Load_Game()
 
 		fread(LoadPlayer, sizeof(CPlayer), 1, fLoad);
 		LoadPlayer->Set_LoadData(Name, JobString);
+
+		int iItemCount(0);
+		fread(&iItemCount, sizeof(int), 1, fLoad);
+		
+		CObj* loadItem = nullptr;
+
+		int iType(0);
+		int iDura(0);
+
+		
+
+		for (int iIdx = 0; iIdx < iItemCount; ++iIdx)
+		{
+			fread(&iType, sizeof(int), 1, fLoad);
+
+			if (NORMAL_WEAPON <= iType && WEAPON_END > iType)
+			{
+				loadItem = new CWeapon(iType);
+				dynamic_cast<CItem*>(loadItem)->Initialize();
+			}
+			else if (NORMAL_ARMOR <= iType && ARMOR_END > iType)
+			{
+				loadItem = new CArmor(iType);
+				dynamic_cast<CItem*>(loadItem)->Initialize();
+			}
+			fread(&iDura, sizeof(int), 1, fLoad);
+			dynamic_cast<CItem*>(loadItem)->Set_Dura(iDura);
+			LoadPlayer->Get_Inventory()->Add_Item(loadItem);
+		}
+		
+		bool bEquipWeapon(false);
+		bool bEquipArmor(false);
+
+		fread(&bEquipWeapon, sizeof(bool), 1, fLoad);
+		fread(&bEquipArmor, sizeof(bool), 1, fLoad);
+
+		if (bEquipWeapon)
+		{
+			fread(&iType, sizeof(int), 1, fLoad);
+			loadItem = new CWeapon(iType);
+			dynamic_cast<CItem*>(loadItem)->Initialize();
+			fread(&iDura, sizeof(int), 1, fLoad);
+			dynamic_cast<CItem*>(loadItem)->Set_Dura(iDura);
+			LoadPlayer->Equip_Wepon(loadItem);
+		}
+
+		if (bEquipArmor)
+		{
+			fread(&iType, sizeof(int), 1, fLoad);
+			loadItem = new CArmor(iType);
+			dynamic_cast<CItem*>(loadItem)->Initialize();
+			fread(&iDura, sizeof(int), 1, fLoad);
+			dynamic_cast<CItem*>(loadItem)->Set_Dura(iDura);
+			LoadPlayer->Equip_Wepon(loadItem);
+		}
 
 		m_pPlayer = LoadPlayer;
 

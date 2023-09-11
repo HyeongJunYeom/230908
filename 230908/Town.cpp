@@ -111,6 +111,7 @@ bool CTown::Save_Game() const
 	{
 		cout << "파일 개방 성공!" << endl << endl;
 
+		int iItemCount = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Get_Inven().size();
 		int iLen = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Name().Get_Len();
 		char* pString = new char[iLen + 1];
 		strcpy_s(pString, iLen + 1,dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Name().Get_String());
@@ -128,6 +129,59 @@ bool CTown::Save_Game() const
 		dynamic_cast<CPlayer*>(m_pCopyPlayer)->Set_SaveData();
 
 		fwrite(dynamic_cast<CPlayer*>(m_pCopyPlayer), sizeof(CPlayer), 1, fSave);
+
+		fwrite(&iItemCount, sizeof(int), 1, fSave);
+
+		int iType(0);
+		int iDura(0);
+		CObj* saveItem = nullptr;
+
+		for (int iIdx = 0; iIdx < iItemCount; ++iIdx)
+		{
+			saveItem = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Get_Inven()[iIdx];
+			iType = dynamic_cast<CItem*>(saveItem)->Get_Type();
+
+			fwrite(&iType, sizeof(int), 1, fSave);
+
+			iDura = dynamic_cast<CItem*>(saveItem)->Get_Dura();
+
+			fwrite(&iDura, sizeof(int), 1, fSave);
+		}
+
+		CObj* pWeapon = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Weapon();
+		CObj* pArmor = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Armor();
+
+		bool bEquipWeapon(false);
+		bool bEquipArmor(false);
+
+		if (pWeapon)
+			bEquipArmor = true;
+
+		if (pArmor)
+			bEquipArmor = true;
+
+		fwrite(&bEquipWeapon, sizeof(bool), 1, fSave);
+		fwrite(&bEquipArmor, sizeof(bool), 1, fSave);
+
+		if (bEquipWeapon)
+		{
+			saveItem = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Weapon();
+			iType = dynamic_cast<CItem*>(saveItem)->Get_Type();
+			iDura = dynamic_cast<CItem*>(saveItem)->Get_Dura();
+
+			fwrite(&iType, sizeof(int), 1, fSave);
+			fwrite(&iDura, sizeof(int), 1, fSave);
+		}
+
+		if (bEquipArmor)
+		{
+			saveItem = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Armor();
+			iType = dynamic_cast<CItem*>(saveItem)->Get_Type();
+			iDura = dynamic_cast<CItem*>(saveItem)->Get_Dura();
+
+			fwrite(&iType, sizeof(int), 1, fSave);
+			fwrite(&iDura, sizeof(int), 1, fSave);
+		}		
 
 		cout << "저장완료!" << endl << endl;
 
