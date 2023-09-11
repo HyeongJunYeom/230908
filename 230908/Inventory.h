@@ -16,7 +16,7 @@ public:
 	void		Render() const;
 
 	bool		Add_Item(CObj* _pItem);
-	void		Delete_Item();
+	bool		Delete_Item(int _iIdx);
 
 public:
 	vector<CObj*>&		Get_Inven() { return vecInven; }

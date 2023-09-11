@@ -159,7 +159,41 @@ void CShop::Update()
 			break;
 
 		case 3:
+			cout << "===== 아이템 판매 =====" << endl << endl;
 
+			dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Render();
+
+			cout << endl;
+			cout << "1. 아이템 판매" << endl;
+			cout << "2. 돌아가기" << endl;
+			cout << "선택: ";
+
+			cin >> iChoice;
+
+			if (1 == iChoice)
+			{
+				cout << "판매하고 싶은 아이템 번호: ";
+				cin >> iChoice;
+				if (iChoice >= 0 && dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Get_Inven().size() > iChoice)
+				{
+					CObj* SellItem = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Get_Inven()[iChoice - 1];
+
+					dynamic_cast<CPlayer*>(m_pCopyPlayer)->Set_AddGold(SellItem->Get_Gold() + m_pCopyPlayer->Get_Gold());
+					if (dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Delete_Item(iChoice - 1))
+					{
+						cout << "아이템 " << SellItem->Get_Name() << "을 판매하였습니다." << endl << endl;
+						cout << "골드 " << SellItem->Get_Gold() << "를 획득하였습니다." << endl << endl;
+					}
+					else
+					{
+						cout << "아이템 판매에 실패하였습니다." << endl << endl;
+					}
+				}
+				else
+				{
+					cout << "인벤토리 범위를 벗어난 입력입니다." << endl;
+				}
+			}
 			break;
 
 		case 4:
