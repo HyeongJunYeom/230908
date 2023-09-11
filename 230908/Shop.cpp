@@ -174,12 +174,13 @@ void CShop::Update()
 			{
 				cout << "판매하고 싶은 아이템 번호: ";
 				cin >> iChoice;
+				--iChoice;
 				if (iChoice >= 0 && dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Get_Inven().size() > iChoice)
 				{
-					CObj* SellItem = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Get_Inven()[iChoice - 1];
+					CObj* SellItem = dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Get_Inven()[iChoice];
 
 					dynamic_cast<CPlayer*>(m_pCopyPlayer)->Set_AddGold(SellItem->Get_Gold() + m_pCopyPlayer->Get_Gold());
-					if (dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Delete_Item(iChoice - 1))
+					if (dynamic_cast<CPlayer*>(m_pCopyPlayer)->Get_Inventory()->Delete_Item(iChoice))
 					{
 						cout << "아이템 " << SellItem->Get_Name() << "을 판매하였습니다." << endl << endl;
 						cout << "골드 " << SellItem->Get_Gold() << "를 획득하였습니다." << endl << endl;

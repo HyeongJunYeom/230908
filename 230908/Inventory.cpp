@@ -74,8 +74,6 @@ bool CInventory::Delete_Item(int _iIdx)
 	{
 		cout << "인벤토리 범위를 벗어난 입력입니다." << endl;
 	}
-	
-	iter += _iIdx - 1;
 
 	if (*iter)
 	{

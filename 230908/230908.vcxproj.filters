@@ -13,201 +13,207 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\00. MainGame">
-      <UniqueIdentifier>{dd90cddc-7e14-4304-8eab-71406a75f2ba}</UniqueIdentifier>
+    <Filter Include="소스 파일\과제 텍스트 알피지">
+      <UniqueIdentifier>{c8e7cd5a-6378-4373-8d9b-166d96debf66}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01. Obj">
-      <UniqueIdentifier>{711129d6-5ff3-42ed-9360-8f6fcd366fa8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01. Obj\Item">
-      <UniqueIdentifier>{c15bcf06-76fe-4953-986c-6a03f2fc03c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02. Space">
-      <UniqueIdentifier>{1e5f4266-8d61-4453-8c38-4e0183d5884b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01. Obj\Creature">
-      <UniqueIdentifier>{6d1fa27d-1629-45e9-8fd9-b4d72ffa0ed6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01. Obj\Creature\Monster">
-      <UniqueIdentifier>{b8ee5d1d-b27b-4b45-beb1-59dae411c069}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01. Obj\Creature\Player">
-      <UniqueIdentifier>{1eabc239-aafc-4294-9bc9-832abb851f9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\03. String">
-      <UniqueIdentifier>{51fe72c6-60ab-42a1-89ae-e880f1101a1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01. Obj\Creature\Monster\RareMonster">
-      <UniqueIdentifier>{c0b38df7-1247-4992-899a-0218742fca96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01. Obj\Creature\Monster\NormalMonster">
-      <UniqueIdentifier>{05c00f5e-d13c-49d4-b2c1-857e27ef7298}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01. Obj\Creature\Monster\EpicMonster">
-      <UniqueIdentifier>{f66e3187-13f1-4a1b-b79b-f3edfca1db89}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01. Obj\Creature\Monster\LegendMonster">
-      <UniqueIdentifier>{222188a1-24e8-417b-8fb8-98bd5c52a13f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02. Space\Shop">
-      <UniqueIdentifier>{2ee5331b-81b2-4292-9b84-0f0db234ae18}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02. Space\Inn">
-      <UniqueIdentifier>{fb8a0114-186c-4132-b70e-a3e2229bd77e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02. Space\Field">
-      <UniqueIdentifier>{455d15d1-27f8-48a5-8858-65128b98b077}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02. Space\Town">
-      <UniqueIdentifier>{d7b626d8-deac-4666-b53d-cea8852474fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\04. Inventory">
-      <UniqueIdentifier>{89c71a01-f23e-4c2c-a5ba-214645c1e856}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\05. FIght">
+    <Filter Include="소스 파일\과제 텍스트 알피지\05. FIght">
       <UniqueIdentifier>{fcce956b-bae3-4659-9f83-9b9a2f14ef0d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01. Obj\Item\Weapon">
+    <Filter Include="소스 파일\과제 텍스트 알피지\00. MainGame">
+      <UniqueIdentifier>{dd90cddc-7e14-4304-8eab-71406a75f2ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj">
+      <UniqueIdentifier>{711129d6-5ff3-42ed-9360-8f6fcd366fa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj\Item">
+      <UniqueIdentifier>{c15bcf06-76fe-4953-986c-6a03f2fc03c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj\Item\Weapon">
       <UniqueIdentifier>{f7268af2-2475-40cb-9d9e-6e0c098f3c97}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01. Obj\Item\Armor">
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj\Item\Armor">
       <UniqueIdentifier>{96a69f28-a067-4439-8958-9e15e246766b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj\Creature">
+      <UniqueIdentifier>{6d1fa27d-1629-45e9-8fd9-b4d72ffa0ed6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster">
+      <UniqueIdentifier>{b8ee5d1d-b27b-4b45-beb1-59dae411c069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\RareMonster">
+      <UniqueIdentifier>{c0b38df7-1247-4992-899a-0218742fca96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\NormalMonster">
+      <UniqueIdentifier>{05c00f5e-d13c-49d4-b2c1-857e27ef7298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\EpicMonster">
+      <UniqueIdentifier>{f66e3187-13f1-4a1b-b79b-f3edfca1db89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\LegendMonster">
+      <UniqueIdentifier>{222188a1-24e8-417b-8fb8-98bd5c52a13f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\01. Obj\Creature\Player">
+      <UniqueIdentifier>{1eabc239-aafc-4294-9bc9-832abb851f9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\02. Space">
+      <UniqueIdentifier>{1e5f4266-8d61-4453-8c38-4e0183d5884b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\02. Space\Shop">
+      <UniqueIdentifier>{2ee5331b-81b2-4292-9b84-0f0db234ae18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\02. Space\Inn">
+      <UniqueIdentifier>{fb8a0114-186c-4132-b70e-a3e2229bd77e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\02. Space\Field">
+      <UniqueIdentifier>{455d15d1-27f8-48a5-8858-65128b98b077}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\02. Space\Town">
+      <UniqueIdentifier>{d7b626d8-deac-4666-b53d-cea8852474fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\03. String">
+      <UniqueIdentifier>{51fe72c6-60ab-42a1-89ae-e880f1101a1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\과제 텍스트 알피지\04. Inventory">
+      <UniqueIdentifier>{89c71a01-f23e-4c2c-a5ba-214645c1e856}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TextRpg0909.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Obj.cpp">
-      <Filter>소스 파일\01. Obj</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>소스 파일\01. Obj\Creature\Monster</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
-      <Filter>소스 파일\01. Obj\Item</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Item</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>소스 파일\01. Obj\Creature\Player</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Player</Filter>
     </ClCompile>
     <ClCompile Include="String.cpp">
-      <Filter>소스 파일\03. String</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\03. String</Filter>
     </ClCompile>
     <ClCompile Include="Space.cpp">
-      <Filter>소스 파일\02. Space</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\02. Space</Filter>
     </ClCompile>
     <ClCompile Include="Shop.cpp">
-      <Filter>소스 파일\02. Space\Shop</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\02. Space\Shop</Filter>
     </ClCompile>
     <ClCompile Include="Inn.cpp">
-      <Filter>소스 파일\02. Space\Inn</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\02. Space\Inn</Filter>
     </ClCompile>
     <ClCompile Include="Field.cpp">
-      <Filter>소스 파일\02. Space\Field</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\02. Space\Field</Filter>
     </ClCompile>
     <ClCompile Include="Creature.cpp">
-      <Filter>소스 파일\01. Obj\Creature</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature</Filter>
     </ClCompile>
     <ClCompile Include="NormalMonster.cpp">
-      <Filter>소스 파일\01. Obj\Creature\Monster\NormalMonster</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\NormalMonster</Filter>
     </ClCompile>
     <ClCompile Include="RareMonster.cpp">
-      <Filter>소스 파일\01. Obj\Creature\Monster\RareMonster</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\RareMonster</Filter>
     </ClCompile>
     <ClCompile Include="EpicMonster.cpp">
-      <Filter>소스 파일\01. Obj\Creature\Monster\EpicMonster</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\EpicMonster</Filter>
     </ClCompile>
     <ClCompile Include="LegendMonster.cpp">
-      <Filter>소스 파일\01. Obj\Creature\Monster\LegendMonster</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\LegendMonster</Filter>
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
-      <Filter>소스 파일\00. MainGame</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\00. MainGame</Filter>
     </ClCompile>
     <ClCompile Include="Town.cpp">
-      <Filter>소스 파일\02. Space\Town</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\02. Space\Town</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
-      <Filter>소스 파일\04. Inventory</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\04. Inventory</Filter>
     </ClCompile>
     <ClCompile Include="Fight.cpp">
-      <Filter>소스 파일\05. FIght</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\05. FIght</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
-      <Filter>소스 파일\01. Obj\Item\Weapon</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Item\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="Armor.cpp">
-      <Filter>소스 파일\01. Obj\Item\Armor</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Item\Armor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRpg0909.cpp">
+      <Filter>소스 파일\과제 텍스트 알피지</Filter>
+    </ClCompile>
+    <ClCompile Include="Practice.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Obj.h">
-      <Filter>소스 파일\01. Obj</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>소스 파일\01. Obj\Creature\Monster</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
-      <Filter>소스 파일\01. Obj\Item</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Item</Filter>
     </ClInclude>
     <ClInclude Include="String.h">
-      <Filter>소스 파일\03. String</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\03. String</Filter>
     </ClInclude>
     <ClInclude Include="Space.h">
-      <Filter>소스 파일\02. Space</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\02. Space</Filter>
     </ClInclude>
     <ClInclude Include="Shop.h">
-      <Filter>소스 파일\02. Space\Shop</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\02. Space\Shop</Filter>
     </ClInclude>
     <ClInclude Include="Inn.h">
-      <Filter>소스 파일\02. Space\Inn</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\02. Space\Inn</Filter>
     </ClInclude>
     <ClInclude Include="Field.h">
-      <Filter>소스 파일\02. Space\Field</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\02. Space\Field</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>소스 파일\01. Obj\Creature\Player</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Player</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Define.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Creature.h">
-      <Filter>소스 파일\01. Obj\Creature</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature</Filter>
     </ClInclude>
     <ClInclude Include="NormalMonster.h">
-      <Filter>소스 파일\01. Obj\Creature\Monster\NormalMonster</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\NormalMonster</Filter>
     </ClInclude>
     <ClInclude Include="RareMonster.h">
-      <Filter>소스 파일\01. Obj\Creature\Monster\RareMonster</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\RareMonster</Filter>
     </ClInclude>
     <ClInclude Include="EpicMonster.h">
-      <Filter>소스 파일\01. Obj\Creature\Monster\EpicMonster</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\EpicMonster</Filter>
     </ClInclude>
     <ClInclude Include="LegendMonster.h">
-      <Filter>소스 파일\01. Obj\Creature\Monster\LegendMonster</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Creature\Monster\LegendMonster</Filter>
     </ClInclude>
     <ClInclude Include="MainGame.h">
-      <Filter>소스 파일\00. MainGame</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\00. MainGame</Filter>
     </ClInclude>
     <ClInclude Include="Town.h">
-      <Filter>소스 파일\02. Space\Town</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\02. Space\Town</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
-      <Filter>소스 파일\04. Inventory</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\04. Inventory</Filter>
     </ClInclude>
     <ClInclude Include="Fight.h">
-      <Filter>소스 파일\05. FIght</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\05. FIght</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">
-      <Filter>소스 파일\01. Obj\Item\Weapon</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Item\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="Armor.h">
-      <Filter>소스 파일\01. Obj\Item\Armor</Filter>
+      <Filter>소스 파일\과제 텍스트 알피지\01. Obj\Item\Armor</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>소스 파일\과제 텍스트 알피지</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

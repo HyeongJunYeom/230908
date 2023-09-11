@@ -64,6 +64,9 @@ void CMainGame::Update()
 		m_pTown->Initialize();
 		m_pTown->Set_Player(m_pPlayer);
 		m_pTown->Update();
+		m_pTown->Release();
+
+		m_pPlayer->Release();
 	}
 }
 
