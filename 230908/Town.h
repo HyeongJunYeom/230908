@@ -14,9 +14,6 @@ public:
 	void		Update() override;
 	void		Release() override;
 	void		Render() const override;
-
-public:
-	bool		Save_Game() const;
 	
 private:
 	CSpace* m_pSpace;

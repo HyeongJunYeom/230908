@@ -32,8 +32,8 @@ public:
 	void		Set_AddMaxHp(int _iAdd);
 	void		Set_MinMaxHp(int _iMin);
 
-	void		Set_LoadData(String _Name, String _JobString);
-	void		Set_SaveData();
+	void		LoadData();
+	void		SaveData();
 
 protected:
 	void		Level_Up();

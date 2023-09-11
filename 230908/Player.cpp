@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Player.h"
+#include "Weapon.h"
+#include "Armor.h"
 
 CPlayer::~CPlayer()
 {
@@ -356,20 +358,226 @@ void CPlayer::Set_MinMaxHp(int _iMin)
 	}
 }
 
-void CPlayer::Set_LoadData(String _Name, String _JobString)
+void CPlayer::LoadData()
 {
-	Set_Name(_Name);
-	Set_JobString(_JobString);
-	m_pArmor = nullptr;
-	m_pWeapon = nullptr;
-	m_pInven = nullptr;
-	m_pInven = new CInventory();
+	FILE* fLoad = nullptr;
+	errno_t err = fopen_s(&fLoad, "../data/save.dat", "rb");
+	if (0 == err)
+	{
+		cout << "파일 개방 성공" << endl << endl;
+
+		int iAtt(0), iHp(0), iMaxHp(0), iExp(0), iNeedExp(0), iLevel(0), iJob(0), iGold(0);
+
+		int iType(0), iDura(0);
+
+		bool bEquipWp(false), bEquipAmr(false);
+
+		int iLen = 0;
+		char* pString = nullptr;
+		fread(&iLen, sizeof(int), 1, fLoad);
+		pString = new char[iLen + 1];
+		fread(pString, sizeof(char), iLen + 1, fLoad);
+
+		Set_Name(pString);
+		delete[] pString;
+		pString = nullptr;
+
+		fread(&iLen, sizeof(int), 1, fLoad);
+		pString = new char[iLen + 1];
+		fread(pString, sizeof(char), iLen + 1, fLoad);
+
+		Set_JobString(pString);
+		delete[] pString;
+		pString = nullptr;
+
+		fread(&iAtt, sizeof(int), 1, fLoad);
+		fread(&iHp, sizeof(int), 1, fLoad);
+		fread(&iMaxHp, sizeof(int), 1, fLoad);
+		fread(&iExp, sizeof(int), 1, fLoad);
+		fread(&iNeedExp, sizeof(int), 1, fLoad);
+		fread(&iLevel, sizeof(int), 1, fLoad);
+		fread(&iJob, sizeof(int), 1, fLoad);
+		fread(&iGold, sizeof(int), 1, fLoad);
+
+		Set_Attack(iAtt);
+		Set_Hp(iHp);
+		Set_MaxHp(iMaxHp);
+		Set_Exp(iExp);
+		Set_NeedExp(iNeedExp);
+		Set_Level(iLevel);
+		Set_Job(iJob);
+		Set_Gold(iGold);
+
+		fread(&bEquipWp, sizeof(bool), 1, fLoad);
+		fread(&bEquipAmr, sizeof(bool), 1, fLoad);
+
+		if (bEquipWp)
+		{
+			fread(&iType, sizeof(int), 1, fLoad);
+			fread(&iDura, sizeof(int), 1, fLoad);
+
+			CObj* loadWp = new CWeapon(iType);
+			dynamic_cast<CItem*>(loadWp)->Initialize();
+			dynamic_cast<CItem*>(loadWp)->Set_Dura(iDura);
+
+			m_pWeapon = loadWp;
+		}
+
+		if (bEquipAmr)
+		{
+			fread(&iType, sizeof(int), 1, fLoad);
+			fread(&iDura, sizeof(int), 1, fLoad);
+
+			CObj* loadArmor = new CArmor(iType);
+			dynamic_cast<CItem*>(loadArmor)->Initialize();
+			dynamic_cast<CItem*>(loadArmor)->Set_Dura(iDura);
+
+			m_pArmor = loadArmor;
+		}
+
+		int iInvenCnt(0);
+
+		fread(&iInvenCnt, sizeof(int), 1, fLoad);
+
+		m_pInven = new CInventory;
+
+		for (int iIdx = 0; iIdx < iInvenCnt; ++iIdx)
+		{
+			fread(&iType, sizeof(int), 1, fLoad);
+			fread(&iDura, sizeof(int), 1, fLoad);
+
+			if (NORMAL_WEAPON <= iType && WEAPON_END > iType)
+			{
+				CObj* loadWp = new CWeapon(iType);
+				dynamic_cast<CItem*>(loadWp)->Initialize();
+				dynamic_cast<CItem*>(loadWp)->Set_Dura(iDura);
+
+				m_pInven->Get_Inven().push_back(loadWp);
+			}
+			else if (NORMAL_ARMOR <= iType && ARMOR_END > iType)
+			{
+				CObj* loadArmor = new CArmor(iType);
+				dynamic_cast<CItem*>(loadArmor)->Initialize();
+				dynamic_cast<CItem*>(loadArmor)->Set_Dura(iDura);
+
+				m_pInven->Get_Inven().push_back(loadArmor);
+			}
+		}
+
+		cout << "파일 불러오기 완료" << endl << endl;
+
+		fclose(fLoad);
+		return;
+	}
+
+	else
+	{
+		cout << "파일 개방 실패" << endl << endl;
+
+		fclose(fLoad);
+		return;
+	}
 }
 
-void CPlayer::Set_SaveData()
+void CPlayer::SaveData()
 {
-	Set_Name(nullptr);
-	Set_JobString(nullptr);
+	FILE* fSave = nullptr;
+	errno_t err = fopen_s(&fSave, "../data/save.dat", "wb");
+	if (0 == err)
+	{
+		cout << "파일 개방 성공" << endl << endl;
+
+		int iAtt(0), iHp(0), iMaxHp(0), iExp(0), iNeedExp(0), iLevel(0), iJob(0), iGold(0);
+		int iType(0), iDura(0);
+
+		bool bEquipWp(false), bEquipAmr(false);
+
+		int iLen = Get_Name().Get_Len();
+		fwrite(&iLen, sizeof(int), 1, fSave);
+		fwrite(Get_Name().Get_String(), sizeof(char), iLen + 1, fSave);
+
+		iLen = Get_JobString().Get_Len();
+		fwrite(&iLen, sizeof(int), 1, fSave);
+		fwrite(Get_JobString().Get_String(), sizeof(char), iLen + 1, fSave);
+
+		iAtt = Get_Attack();
+		fwrite(&iAtt, sizeof(int), 1, fSave);
+
+		iHp = Get_Hp();
+		fwrite(&iHp, sizeof(int), 1, fSave);
+
+		iMaxHp = Get_MaxHp();
+		fwrite(&iMaxHp, sizeof(int), 1, fSave);
+
+		iExp = Get_Exp();
+		fwrite(&iExp, sizeof(int), 1, fSave);
+
+		iNeedExp = Get_NeedExp();
+		fwrite(&iNeedExp, sizeof(int), 1, fSave);
+
+		iLevel = Get_Level();
+		fwrite(&iLevel, sizeof(int), 1, fSave);
+
+		iJob = Get_Job();
+		fwrite(&iJob, sizeof(int), 1, fSave);
+
+		iGold = Get_Gold();
+		fwrite(&iGold, sizeof(int), 1, fSave);
+
+		if (m_pWeapon)
+			bEquipWp = true;
+
+		fwrite(&bEquipWp, sizeof(bool), 1, fSave);
+
+		if (m_pArmor)
+			bEquipAmr = true;
+
+		fwrite(&bEquipAmr, sizeof(bool), 1, fSave);
+
+		if (bEquipWp)
+		{
+			iType = dynamic_cast<CItem*>(m_pWeapon)->Get_Type();
+			iDura = dynamic_cast<CItem*>(m_pWeapon)->Get_Dura();
+
+			fwrite(&iType, sizeof(int), 1, fSave);
+			fwrite(&iDura, sizeof(int), 1, fSave);
+		}
+
+		if (bEquipAmr)
+		{
+			iType = dynamic_cast<CItem*>(m_pArmor)->Get_Type();
+			iDura = dynamic_cast<CItem*>(m_pArmor)->Get_Dura();
+
+			fwrite(&iType, sizeof(int), 1, fSave);
+			fwrite(&iDura, sizeof(int), 1, fSave);
+		}
+
+		int iInvenCnt = m_pInven->Get_Inven().size();
+		fwrite(&iInvenCnt, sizeof(int), 1, fSave);
+
+		for (int iIdx = 0; iIdx < iInvenCnt; ++iIdx)
+		{
+			iType = dynamic_cast<CItem*>(m_pInven->Get_Inven()[iIdx])->Get_Type();
+			iDura = dynamic_cast<CItem*>(m_pInven->Get_Inven()[iIdx])->Get_Dura();
+
+			fwrite(&iType, sizeof(int), 1, fSave);
+			fwrite(&iDura, sizeof(int), 1, fSave);
+		}
+
+		cout << "저장 완료!" << endl << endl;
+
+		fclose(fSave);
+
+		return;
+	}
+
+	else
+	{
+		cout << "파일 개방 실패" << endl << endl;
+
+		fclose(fSave);
+		return;
+	}
 }
 
 void CPlayer::Level_Up()

@@ -19,9 +19,6 @@ public:
 public:
 	void		Render();
 
-public:
-	bool		Load_Game();
-
 private:
 	CObj* m_pPlayer;
 	CSpace* m_pTown;
